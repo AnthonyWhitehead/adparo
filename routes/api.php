@@ -18,5 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/items', 'ItemController@index')->name('items');
-Route::get('/items/{item}', 'ItemController@show')->name('item');
+Route::middleware('auth:api')->group(function () {
+    Route::get('/items', 'ItemController@index')->name('items');
+    Route::get('/items/{item}', 'ItemController@show')->name('item');
+    Route::post('/item/store', 'itemController@store')->name('item_store');
+});

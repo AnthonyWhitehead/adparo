@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateItemRequest;
 use App\Models\Item;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -19,30 +23,35 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param CreateItemRequest $request
+     * @return Application|ResponseFactory|Response
      */
-    public function store(Request $request)
+    public function store(CreateItemRequest $request)
     {
-        //
+        $item = new Item;
+
+        try {
+            $item->fill($request->all());
+
+            $item->save();
+
+            return response([
+                'message' => 'Created new item'
+            ]);
+
+        } catch (Exception $e) {
+            return response([
+                'message' => 'Could not create item'
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param Item $item
      * @return Response
      */
     public function show(Item $item)
@@ -53,8 +62,8 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Item  $item
-     * @return Response
+     * @param Item $item
+     * @return void
      */
     public function edit(Item $item)
     {
@@ -64,9 +73,9 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
-     * @return Response
+     * @param Request $request
+     * @param Item $item
+     * @return void
      */
     public function update(Request $request, Item $item)
     {
@@ -76,8 +85,8 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
-     * @return Response
+     * @param Item $item
+     * @return void
      */
     public function destroy(Item $item)
     {
