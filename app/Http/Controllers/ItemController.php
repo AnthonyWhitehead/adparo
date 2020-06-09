@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateItemRequest;
+use App\Http\Requests\EditItemRequest;
 use App\Models\Item;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ItemController extends Controller
@@ -60,26 +60,15 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Item $item
-     * @return void
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param EditItemRequest $request
      * @param Item $item
      * @return void
      */
-    public function update(Request $request, Item $item)
+    public function update(EditItemRequest $request, Item $item)
     {
-        //
+        $item->update($request->all());
     }
 
     /**
