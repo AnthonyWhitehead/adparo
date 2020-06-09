@@ -21,5 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->group(function () {
     Route::get('/items', 'ItemController@index')->name('items');
     Route::get('/items/{item}', 'ItemController@show')->name('item');
-    Route::post('/item/store', 'itemController@store')->name('item_store');
+    Route::post('/items/store', 'ItemController@store')->name('item_store');
 });
