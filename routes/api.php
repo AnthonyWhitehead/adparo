@@ -23,4 +23,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/items/{item}', 'ItemController@show')->name('item');
     Route::post('/items/store', 'ItemController@store')->name('item_store');
     Route::patch('/items/update/{item}', 'ItemController@update')->name('item_update');
+    Route::delete('/items/destroy/{item}', 'ItemController@destroy')->name('item_destroy');
 });

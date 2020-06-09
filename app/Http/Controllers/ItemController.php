@@ -76,9 +76,10 @@ class ItemController extends Controller
      *
      * @param Item $item
      * @return void
+     * @throws Exception
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
     }
 }

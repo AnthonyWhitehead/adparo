@@ -91,4 +91,25 @@ class ItemTest extends TestCase
             ]);
         });
     }
+
+    public function testItCanDeleteItem()
+    {
+
+        $this->refreshDatabase();
+        $user = $this->createUser();
+        $item = $this->createItem();
+
+        $this->assertDatabaseHas('items', [
+            'title' => $item->title
+        ]);
+
+        $response = $this->actingAs($user, 'api')->json('delete', route('item_destroy', ['item' => $item->id]),
+            ['Content-type' => 'application/json']
+        );
+
+        $response->assertOk();
+        $this->assertDatabaseMissing('items', [
+            'title' => $item->title
+        ]);
+    }
 }
