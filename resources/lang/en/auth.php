@@ -16,4 +16,16 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'messages' => [
+        'success' => [
+          'register' => 'Successfully registered new user.'
+        ],
+        'failed' => [
+            'required' => 'The :attribute attribute is required.',
+            'string' => 'The :attribute attribute must be a string.',
+            'unique_email' => 'Woops, looks like this email has all ready been used!',
+            'email' => 'Please enter a valid email address.'
+        ]
+    ]
+
 ];
