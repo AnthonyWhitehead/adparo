@@ -26,7 +26,7 @@ class AuthRegisterTest extends TestCase
         $response->assertStatus(201);
 
         $response->assertJson([
-           'message' => 'Successfully created user'
+           'message' => __('auth.messages.success.register')
         ]);
 
         $this->assertDatabaseHas('users', [

@@ -29,7 +29,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => config('auth.messages.create_user_success')
+            'message' => __('auth.messages.success.register')
         ], 201);
     }
 
