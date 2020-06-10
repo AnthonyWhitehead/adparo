@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Auth\Requests\LoginRequest;
 use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Models\User;
 use Carbon\Carbon;
@@ -29,25 +30,18 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => config('auth.messages.create_user_success')
+            'message' => __('auth.messages.success.register')
         ], 201);
     }
 
     /**
      * Login user and create token
      *
-     * @param Request $request
+     * @param LoginRequest $request
      * @return JsonResponse
-     *
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
-        ]);
 
         $credentials = request(['email', 'password']);
 

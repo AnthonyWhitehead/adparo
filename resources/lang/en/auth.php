@@ -17,6 +17,9 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
     'messages' => [
+        'success' => [
+          'register' => 'Successfully registered new user.'
+        ],
         'failed' => [
             'required' => 'The :attribute attribute is required.',
             'string' => 'The :attribute attribute must be a string.',
