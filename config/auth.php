@@ -114,4 +114,8 @@ return [
 
     'password_timeout' => 10800,
 
+    'messages' => [
+        'create_user_success' => 'Successfully created user.'
+    ]
+
 ];

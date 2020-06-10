@@ -72,10 +72,11 @@ class ItemTest extends TestCase
         ]);
 
 
-        $response = $this->actingAs($user, 'api')->json('patch', route('item_update', ['item' => $item->id]),
-            $requestFields->toArray(),
-            ['Content-type' => 'application/json']
-        );
+        $response = $this->actingAs($user, 'api')
+            ->json('patch', route('item_update', ['item' => $item->id]),
+                $requestFields->toArray(),
+                ['Content-type' => 'application/json']
+            );
 
         $response->assertOk();
 

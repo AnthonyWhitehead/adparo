@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -13,16 +14,11 @@ class AuthController extends Controller
     /**
      * register a new user
      *
-     * @param Request $request
+     * @param RegisterUserRequest $request
      * @return JsonResponse
      */
-    public function register(Request $request)
+    public function register( RegisterUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
-        ]);
 
         $user = new User([
             'name' => $request->name,
@@ -33,7 +29,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Successfully created user'
+            'message' => config('auth.messages.create_user_success')
         ], 201);
     }
 
