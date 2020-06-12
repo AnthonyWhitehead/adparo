@@ -19,8 +19,21 @@ const Login = () => {
   const [formData, setFormData] = useState(initialState);
 
   const handleChange = (e) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    const value =
+      e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios
+      .post('/api/auth/login', formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -30,7 +43,7 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className="login-form" noValidate>
+        <form className="login-form" noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -56,14 +69,14 @@ const Login = () => {
             onChange={handleChange}
           />
           <FormControlLabel
-            control={(
+            control={
               <Checkbox
                 value="remember"
                 color="primary"
                 name="rememberMe"
                 onChange={handleChange}
               />
-            )}
+            }
             label="Remember me"
           />
           <Button type="submit" fullWidth variant="contained" color="primary">
