@@ -5,14 +5,17 @@ import { createStore } from 'redux';
 import rootReducer from './store/reducers';
 
 import App from './App';
+
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // eslint-disable-next-line no-undef,no-underscore-dangle
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('app')
+  // eslint-disable-next-line no-undef
+  document.getElementById('app'),
 );
