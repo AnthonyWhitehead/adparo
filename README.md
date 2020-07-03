@@ -8,7 +8,7 @@ Throughout my career I have used a variety of workflow tools including, Trello, 
 
 ### Tech stack
 
-Laravel Api
-React Single page app
-Mysql database
+- Laravel Api
+- React Single page app
+- Mysql database
 
